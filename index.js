@@ -49,7 +49,8 @@ const main = function main(args = { strict: false }) {
    * @param {string[]} expectedProperties The required properties.
    * @returns {string|undefined} string|undefined
   */
-  const miowepm = function miowepm(x, expectedProperties) {
+  // eslint-disable-next-line max-len
+  const makeIsObjectWithExpectedPropsMessage = function makeIsObjectWithExpectedPropsMessage(x, expectedProperties) {
     const keys = typeof x === 'object' && x !== null ?
       Object.keys(x) :
       undefined;
@@ -76,9 +77,9 @@ const main = function main(args = { strict: false }) {
   };
 
   return {
-    makeExpectedPropsMessage: miowepm,
+    makeExpectedPropsMessage: makeIsObjectWithExpectedPropsMessage,
     makeIsObjectLikeMessage,
-    makeIsObjectWithExpectedPropsMessage: miowepm,
+    makeIsObjectWithExpectedPropsMessage,
   };
 };
 
