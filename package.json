@@ -2,7 +2,10 @@
   "name": "@tmurphree/validation-error-messages",
   "version": "0.0.0",
   "description": "",
-  "keywords": ["validation", "error messages"],
+  "keywords": [
+    "validation",
+    "error messages"
+  ],
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -13,9 +16,7 @@
     "test": "jasmine",
     "preversion": "npm run test"
   },
-  "dependencies": {
-    "dotenv": "8.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "6.1.0",
     "eslint-config-airbnb-base": "14.0.0",
