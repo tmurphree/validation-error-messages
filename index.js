@@ -1,12 +1,47 @@
 // eslint-disable-next-line
 const main = function main(args = { strict: false }) {
-  // const makeIsObjectLikeMessage = function makeIsObjectLikeMessage(
-  //   x,
-  //   template,
-  //   options = { checkType: args.strict }
-  // ) {
+  /**
+   * @description Make an error message for isObjectLike.
+   * @param {object} x The object to test.
+   * @param {object} template The object you want x to look like.
+   * @returns {string|undefined} string|undefined
+  */
+  const makeIsObjectLikeMessage = function makeIsObjectLikeMessage(
+    x,
+    template,
+    // eslint-disable-next-line
+    options = { checkType: args.strict }
+  ) {
+    const templateKeys = typeof template === 'object' && template !== null ?
+      Object.keys(template) :
+      undefined;
 
-  // };
+    const xKeys = typeof x === 'object' && x !== null ?
+      Object.keys(x) :
+      undefined;
+
+    if (templateKeys === undefined) {
+      throw new Error('The template object must be an object.');
+    }
+
+    if (xKeys === undefined) {
+      return 'Expected input to be an object.';
+    }
+
+    for (let index = 0; index < templateKeys.length; index++) {
+      if (xKeys.includes(templateKeys[index]) === false) {
+        return `Expected input to have these properties: (${templateKeys.join(', ')}).  It is missing at least property ${templateKeys[index]}.`;
+      }
+    }
+
+    for (let index = 0; index < xKeys.length; index++) {
+      if (templateKeys.includes(xKeys[index]) === false) {
+        return `Expected input to have these properties: (${templateKeys.join(', ')}).  It has at least one additional property ${xKeys[index]}.`;
+      }
+    }
+
+    return undefined;
+  };
 
   /**
    * @description Make an error message for isObjectWithExpectedProps.
@@ -15,7 +50,7 @@ const main = function main(args = { strict: false }) {
    * @returns {string|undefined} string|undefined
   */
   const miowepm = function miowepm(x, expectedProperties) {
-    const keys = typeof x === 'object' ?
+    const keys = typeof x === 'object' && x !== null ?
       Object.keys(x) :
       undefined;
 
@@ -24,16 +59,16 @@ const main = function main(args = { strict: false }) {
       expectedProperties.length === 0 ||
       expectedProperties.some((el) => (typeof el !== 'string'))
     ) {
-      throw new Error('Expected properties array to be an array of strings.');
+      throw new Error('expectedProperties must be an array of strings with at least one entry.');
     }
 
-    if (!(typeof x === 'object')) {
+    if (keys === undefined) {
       return 'Expected input to be an object.';
     }
 
     for (let index = 0; index < expectedProperties.length; index++) {
       if (keys.includes(expectedProperties[index]) === false) {
-        return `Expected input to have these properties: (${expectedProperties.join(', ')}).  Missing at least property ${expectedProperties[index]}.`;
+        return `Expected input to have these properties: (${expectedProperties.join(', ')}).  It is missing at least property ${expectedProperties[index]}.`;
       }
     }
 
@@ -42,7 +77,7 @@ const main = function main(args = { strict: false }) {
 
   return {
     makeExpectedPropsMessage: miowepm,
-    // makeIsObjectLikeMessage,
+    makeIsObjectLikeMessage,
     makeIsObjectWithExpectedPropsMessage: miowepm,
   };
 };

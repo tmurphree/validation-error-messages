@@ -50,4 +50,4 @@ const { makeIsObjectLikeMessage } = require('@tmurphree/validation-error-message
 |Function|Possible output|Comment|  
 |---|---|---|
 |makeExpectedPropsMessage(input, arrayOfStrings)|See makeIsObjectWithExpectedPropsMessage|Alias of makeIsObjectWithExpectedPropsMessage|  
-|makeIsObjectWithExpectedPropsMessage(input, arrayOfStrings)<br><br>e.g makeIsObjectWithExpectedPropsMessage(input, ['foo', 'bar', 'baz'])|Expected input to be an object.<br><br>Expected input to have these properties: (foo, bar, baz).  Missing at least one property: foo.<br><br>`undefined`|Returns undefined if for some reason all of the expected properties are there.|  
+|makeIsObjectWithExpectedPropsMessage(input, arrayOfStrings)<br><br>e.g makeIsObjectWithExpectedPropsMessage(input, ['foo', 'bar', 'baz'])|Expected input to be an object.<br><br>Expected input to have these properties: (foo, bar, baz).  It is missing at least one property: foo.<br><br>`undefined`|Returns undefined if for some reason all of the expected properties are there.|  
