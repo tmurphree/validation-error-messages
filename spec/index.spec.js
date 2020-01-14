@@ -63,24 +63,24 @@ describe('makeIsObjectLikeMessage', () => {
   it('returns an error message for objects', () => {
     // x is missing property b
     expect(makeIsObjectLikeMessage({ a: 1, c: 3 }, template))
-      .toBe('Expected input to have these properties: (a, b, c).  It is missing at least property b.');
+      .toBe('Input is missing at least property b.');
 
     // x is missing property b and has additional property z
     // we look for missing properties first
     expect(makeIsObjectLikeMessage({ a: 1, c: 3, z: 4 }, template))
-      .toBe('Expected input to have these properties: (a, b, c).  It is missing at least property b.');
+      .toBe('Input is missing at least property b.');
 
     // x has all of template plus property d
     expect(makeIsObjectLikeMessage({
       a: 1, b: 2, c: 3, d: 4,
     }, template))
-      .toBe('Expected input to have these properties: (a, b, c).  It has at least one additional property d.');
+      .toBe('Input has at least one additional property d.');
   });
 
   it('returns on the first missing property when more than one property is missing', () => {
     // x is missing properties b and c
     expect(makeIsObjectLikeMessage({ a: 1 }, template))
-      .toBe('Expected input to have these properties: (a, b, c).  It is missing at least property b.');
+      .toBe('Input is missing at least property b.');
   });
 });
 
@@ -119,7 +119,7 @@ describe('makeIsObjectWithExpectedPropsMessage', () => {
     const x = { a: 1, b: 2, c: 3 };
 
     expect(makeExpectedPropsMessage(x, ['a', 'z']))
-      .toBe('Expected input to have these properties: (a, z).  It is missing at least property z.');
+      .toBe('Input is missing at least property z.');
   });
 
   it('returns on the first missing property when more than one property is missing', () => {
@@ -127,6 +127,6 @@ describe('makeIsObjectWithExpectedPropsMessage', () => {
     const x = { a: 1, b: 2, c: 3 };
 
     expect(makeExpectedPropsMessage(x, expectedProps))
-      .toBe('Expected input to have these properties: (foo, bar, baz).  It is missing at least property foo.');
+      .toBe('Input is missing at least property foo.');
   });
 });

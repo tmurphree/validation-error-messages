@@ -30,13 +30,13 @@ const main = function main(args = { strict: false }) {
 
     for (let index = 0; index < templateKeys.length; index++) {
       if (xKeys.includes(templateKeys[index]) === false) {
-        return `Expected input to have these properties: (${templateKeys.join(', ')}).  It is missing at least property ${templateKeys[index]}.`;
+        return `Input is missing at least property ${templateKeys[index]}.`;
       }
     }
 
     for (let index = 0; index < xKeys.length; index++) {
       if (templateKeys.includes(xKeys[index]) === false) {
-        return `Expected input to have these properties: (${templateKeys.join(', ')}).  It has at least one additional property ${xKeys[index]}.`;
+        return `Input has at least one additional property ${xKeys[index]}.`;
       }
     }
 
@@ -69,7 +69,7 @@ const main = function main(args = { strict: false }) {
 
     for (let index = 0; index < expectedProperties.length; index++) {
       if (keys.includes(expectedProperties[index]) === false) {
-        return `Expected input to have these properties: (${expectedProperties.join(', ')}).  It is missing at least property ${expectedProperties[index]}.`;
+        return `Input is missing at least property ${expectedProperties[index]}.`;
       }
     }
 
