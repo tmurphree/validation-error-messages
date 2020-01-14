@@ -1,9 +1,38 @@
+// eslint-disable-next-line
 const main = function main(args = { strict: false }) {
-  if (x === undefined) {
-    throw new Error('some error');
-  }
+  // const makeIsObjectLikeMessage = function makeIsObjectLikeMessage(
+  //   x,
+  //   template,
+  //   options = { checkType: args.strict }
+  // ) {
 
-  return true;
+  // };
+
+  /**
+   * @description Make an error message for isObjectWithExpectedProps.
+   * @param {object} x The object to test.
+   * @param {string[]} expectedProperties The required properties.
+   * @returns {string}
+  */
+  const miowepm = function miowepm(x, expectedProperties) {
+    if (!(typeof x === 'object')) {
+      throw new Error('Expected the test data to be an object.');
+    }
+
+    if (
+      !(Array.isArray(expectedProperties)) ||
+      expectedProperties.length === 0 ||
+      expectedProperties.some((el) => (typeof el !== 'string'))
+    ) {
+      throw new Error('Expected properties array to be an array of strings.');
+    }
+  };
+
+  return {
+    makeExpectedPropsMessage: miowepm,
+    // makeIsObjectLikeMessage,
+    makeIsObjectWithExpectedPropsMessage: miowepm,
+  };
 };
 
 module.exports = {

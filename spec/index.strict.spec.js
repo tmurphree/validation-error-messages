@@ -1,8 +1,8 @@
 /* eslint no-undef:"off" */
 
-require('dotenv').config();
+// const { isPopulatedString } = require('@tmurphree/validation-predicates');
 
-const { myFn } = require('../index.js');
+// const { makeIsObjectLikeMessage } = require('../index.js').strict;
 
 // #region jasmine setup
 const origTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -33,12 +33,8 @@ const myReporter = {
 jasmine.getEnv().addReporter(myReporter);
 // #endregion jasmine setup
 
-describe('myFn', () => {
-  it('throws on bad input', () => {
-    expect(() => { myFn(); }).toThrow();
-  });
-
-  it('does something cool', () => {
-    expect(myFn('asdf')).toBe(true);
+describe('makeIsObjectLikeMessage', () => {
+  it('behaves differently in strict mode', () => {
+    pending('successful completion of previous specs');
   });
 });

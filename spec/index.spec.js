@@ -1,8 +1,12 @@
 /* eslint no-undef:"off" */
 
-require('dotenv').config();
+// const { isPopulatedString } = require('@tmurphree/validation-predicates');
 
-const { myFn } = require('../index.js');
+const {
+  makeExpectedPropsMessage,
+  // makeIsObjectLikeMessage,
+  makeIsObjectWithExpectedPropsMessage,
+} = require('../index.js');
 
 // #region jasmine setup
 const origTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -33,12 +37,20 @@ const myReporter = {
 jasmine.getEnv().addReporter(myReporter);
 // #endregion jasmine setup
 
-describe('myFn', () => {
-  it('throws on bad input', () => {
-    expect(() => { myFn(); }).toThrow();
+describe('makeIsObjectWithExpectedPropsMessage', () => {
+  it('has an alias', () => {
+    expect(makeExpectedPropsMessage === makeIsObjectWithExpectedPropsMessage)
+      .toBeTrue();
   });
 
-  it('does something cool', () => {
-    expect(myFn('asdf')).toBe(true);
+  it('throws on bad input', () => {
+    expect(() => (makeExpectedPropsMessage(99))).toThrow();
+    expect(() => (makeExpectedPropsMessage({ foo: 12 }, []))).toThrow();
+    expect(() => (makeExpectedPropsMessage({ foo: 12 }, ['asdf', 12])))
+      .toThrow();
+  });
+
+  it('returns an error message', () => {
+
   });
 });
