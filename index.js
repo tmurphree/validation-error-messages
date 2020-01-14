@@ -12,12 +12,12 @@ const main = function main(args = { strict: false }) {
    * @description Make an error message for isObjectWithExpectedProps.
    * @param {object} x The object to test.
    * @param {string[]} expectedProperties The required properties.
-   * @returns {string}
+   * @returns {string|undefined} string|undefined
   */
   const miowepm = function miowepm(x, expectedProperties) {
-    if (!(typeof x === 'object')) {
-      throw new Error('Expected the test data to be an object.');
-    }
+    const keys = typeof x === 'object' ?
+      Object.keys(x) :
+      undefined;
 
     if (
       !(Array.isArray(expectedProperties)) ||
@@ -26,6 +26,18 @@ const main = function main(args = { strict: false }) {
     ) {
       throw new Error('Expected properties array to be an array of strings.');
     }
+
+    if (!(typeof x === 'object')) {
+      return 'Expected input to be an object.';
+    }
+
+    for (let index = 0; index < expectedProperties.length; index++) {
+      if (keys.includes(expectedProperties[index]) === false) {
+        return `Expected input to have these properties: (${expectedProperties.join(', ')}).  Missing at least property ${expectedProperties[index]}.`;
+      }
+    }
+
+    return undefined;
   };
 
   return {

@@ -24,7 +24,7 @@ if (!(isObjectLike(input, template))) {
 }
 
 // uses this library and makes good error messages quickly
-// throws Error('Invalid input: property mismatch.  Missing expected property "password".')
+// throws Error('Input is missing at least one property: password.')
 if (!(isObjectLike(input, template))) {
   throw new Error(makeIsObjectLikeMessage(input, template));
 }
@@ -46,3 +46,8 @@ With strict mode:
 const { makeIsObjectLikeMessage } = require('@tmurphree/validation-error-messages').strict;
 ```
 
+# Functions  
+|Function|Possible output|Comment|  
+|---|---|---|
+|makeExpectedPropsMessage(input, arrayOfStrings)|See makeIsObjectWithExpectedPropsMessage|Alias of makeIsObjectWithExpectedPropsMessage|  
+|makeIsObjectWithExpectedPropsMessage(input, arrayOfStrings)<br><br>e.g makeIsObjectWithExpectedPropsMessage(input, ['foo', 'bar', 'baz'])|Expected input to be an object.<br><br>Expected input to have these properties: (foo, bar, baz).  Missing at least one property: foo.<br><br>`undefined`|Returns undefined if for some reason all of the expected properties are there.|  
