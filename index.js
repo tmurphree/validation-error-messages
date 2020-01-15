@@ -9,7 +9,6 @@ const main = function main(args = { strict: false }) {
   const makeIsObjectLikeMessage = function makeIsObjectLikeMessage(
     x,
     template,
-    // eslint-disable-next-line
     options = { checkType: args.strict }
   ) {
     const templateKeys = typeof template === 'object' && template !== null ?
@@ -37,6 +36,17 @@ const main = function main(args = { strict: false }) {
     for (let index = 0; index < xKeys.length; index++) {
       if (templateKeys.includes(xKeys[index]) === false) {
         return `Input has at least one additional property ${xKeys[index]}.`;
+      }
+    }
+
+    // keys are the same here so it doesn't matter which key array we use
+    if (options.checkType === true) {
+      for (let index = 0; index < templateKeys.length; index++) {
+        const currentKey = templateKeys[index];
+
+        if (typeof x[currentKey] !== typeof template[currentKey]) {
+          return `Input.${currentKey} is type ${typeof x[currentKey]} and expected type ${typeof template[currentKey]}.`;
+        }
       }
     }
 

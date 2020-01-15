@@ -1,7 +1,5 @@
 /* eslint no-undef:"off" */
 
-// const { isPopulatedString } = require('@tmurphree/validation-predicates');
-
 const {
   makeExpectedPropsMessage,
   makeIsObjectLikeMessage,
