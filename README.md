@@ -5,7 +5,7 @@ Companion library to [@tmurphree/validation-predicates](https://www.npmjs.com/pa
 Makes it easier for you to make complicated validation messages.  
 
 # Change log  
-TODO: put link here  
+[Link](https://github.com/tmurphree/validation-error-messages/blob/master/CHANGELOG.md)  
 
 # Installation  
 npm install --save @tmurphree/validation-error-messages  
