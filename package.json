@@ -1,6 +1,6 @@
 {
   "name": "@tmurphree/validation-error-messages",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Easily make error messages for a subset of the validations in @tmurphree/validation-predicates.",
   "keywords": [
     "validation",
