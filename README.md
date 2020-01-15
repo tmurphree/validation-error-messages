@@ -20,11 +20,11 @@ const template = { password: '***', userName: 'something' };
 
 // the long way
 if (!(isObjectLike(input, template))) {
-  throw new Error('Yikes!  Input is not valid but I have no idea why!  Now I have to run complicated code to find it.');
+  throw new Error('Yikes!  input is not valid but I have no idea why!  Now I have to run complicated code to find it.');
 }
 
 // uses this library and makes good error messages quickly
-// throws Error('Input is missing at least one property: password.')
+// throws Error('input is missing at least one property: password.')
 if (!(isObjectLike(input, template))) {
   throw new Error(makeIsObjectLikeMessage(input, template));
 }

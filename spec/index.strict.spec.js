@@ -31,6 +31,7 @@ const myReporter = {
 jasmine.getEnv().addReporter(myReporter);
 // #endregion jasmine setup
 
+
 describe('makeIsObjectLikeMessage', () => {
   const template = { a: 1, b: 2, c: 3 };
 
@@ -59,31 +60,50 @@ describe('makeIsObjectLikeMessage', () => {
   it('returns an error message for objects', () => {
     // x is missing property b
     expect(makeIsObjectLikeMessage({ a: 1, c: 3 }, template))
-      .toBe('Input is missing at least property b.');
+      .toBe('input is missing at least property b.');
 
     // x is missing property b and has additional property z
     // we look for missing properties first
     expect(makeIsObjectLikeMessage({ a: 1, c: 3, z: 4 }, template))
-      .toBe('Input is missing at least property b.');
+      .toBe('input is missing at least property b.');
 
     // x has all of template plus property d
     expect(makeIsObjectLikeMessage({
       a: 1, b: 2, c: 3, d: 4,
     }, template))
-      .toBe('Input has at least one additional property d.');
+      .toBe('input has at least one additional property d.');
   });
 
   it('returns on the first missing property when more than one property is missing', () => {
     // x is missing properties b and c
     expect(makeIsObjectLikeMessage({ a: 1 }, template))
-      .toBe('Input is missing at least property b.');
+      .toBe('input is missing at least property b.');
   });
   // #endregion re-test behavior from loose mode
 
   it('checks types in strict mode', () => {
     const bIsString = { a: 1, b: 's', c: 3 };
     expect(makeIsObjectLikeMessage(bIsString, template))
-      .toBe('Input.b is type string and expected type number.');
+      .toBe('input.b is type string and expected type number.');
+  });
 
+  it('lets you chage the variable name in the output', () => {
+    const bIsString = { a: 1, b: 's', c: 3 };
+
+    expect(makeIsObjectLikeMessage('notanobject', template, 'charles'))
+      .toBe('Expected charles to be an object.');
+
+    // x is missing property b
+    expect(makeIsObjectLikeMessage({ a: 1, c: 3 }, template, 'charles'))
+      .toBe('charles is missing at least property b.');
+
+    // x has all of template plus property d
+    expect(makeIsObjectLikeMessage({
+      a: 1, b: 2, c: 3, d: 4,
+    }, template, 'charles'))
+      .toBe('charles has at least one additional property d.');
+
+    expect(makeIsObjectLikeMessage(bIsString, template, 'charles'))
+      .toBe('charles.b is type string and expected type number.');
   });
 });
