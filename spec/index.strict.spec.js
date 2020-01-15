@@ -44,13 +44,13 @@ describe('makeIsObjectLikeMessage', () => {
 
   it('returns an error messages for non-objects', () => {
     expect(makeIsObjectLikeMessage('notanobject', template))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
 
     expect(makeIsObjectLikeMessage(null, template))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
 
     expect(makeIsObjectLikeMessage(undefined, template))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
   });
 
   it('returns undefined if no differences', () => {
@@ -91,7 +91,7 @@ describe('makeIsObjectLikeMessage', () => {
     const bIsString = { a: 1, b: 's', c: 3 };
 
     expect(makeIsObjectLikeMessage('notanobject', template, 'charles'))
-      .toBe('Expected charles to be an object.');
+      .toBe('charles is not an object.');
 
     // x is missing property b
     expect(makeIsObjectLikeMessage({ a: 1, c: 3 }, template, 'charles'))

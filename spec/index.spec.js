@@ -45,13 +45,13 @@ describe('makeIsObjectLikeMessage', () => {
 
   it('returns an error messages for non-objects', () => {
     expect(makeIsObjectLikeMessage('notanobject', template))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
 
     expect(makeIsObjectLikeMessage(null, template))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
 
     expect(makeIsObjectLikeMessage(undefined, template))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
   });
 
   it('returns undefined if no differences', () => {
@@ -83,7 +83,7 @@ describe('makeIsObjectLikeMessage', () => {
 
   it('lets you chage the variable name in the output', () => {
     expect(makeIsObjectLikeMessage('notanobject', template, 'charles'))
-      .toBe('Expected charles to be an object.');
+      .toBe('charles is not an object.');
 
     // x is missing property b
     expect(makeIsObjectLikeMessage({ a: 1, c: 3 }, template, 'charles'))
@@ -113,13 +113,13 @@ describe('makeIsObjectWithExpectedPropsMessage', () => {
 
   it('returns an error messages for non-objects', () => {
     expect(makeExpectedPropsMessage('notanobject', ['a', 'b', 'c']))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
 
     expect(makeExpectedPropsMessage(null, ['a', 'b', 'c']))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
 
     expect(makeExpectedPropsMessage(undefined, ['a', 'b', 'c']))
-      .toBe('Expected input to be an object.');
+      .toBe('input is not an object.');
   });
 
   it('returns undefined if no differences', () => {
@@ -141,5 +141,16 @@ describe('makeIsObjectWithExpectedPropsMessage', () => {
 
     expect(makeExpectedPropsMessage(x, expectedProps))
       .toBe('input is missing at least property foo.');
+  });
+
+  it('lets you chage the variable name in the output', () => {
+    const expectedProps = ['foo', 'bar', 'baz'];
+    const x = { a: 1, b: 2, c: 3 };
+
+    expect(makeExpectedPropsMessage(123123, expectedProps, 'charles'))
+      .toBe('charles is not an object.');
+
+    expect(makeExpectedPropsMessage(x, expectedProps, 'charles'))
+      .toBe('charles is missing at least property foo.');
   });
 });

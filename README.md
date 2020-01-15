@@ -47,7 +47,38 @@ const { makeIsObjectLikeMessage } = require('@tmurphree/validation-error-message
 ```
 
 # Functions  
-|Function|Possible output|Comment|  
-|---|---|---|
-|makeExpectedPropsMessage(input, arrayOfStrings)|See makeIsObjectWithExpectedPropsMessage|Alias of makeIsObjectWithExpectedPropsMessage|  
-|makeIsObjectWithExpectedPropsMessage(input, arrayOfStrings)<br><br>e.g makeIsObjectWithExpectedPropsMessage(input, ['foo', 'bar', 'baz'])|Expected input to be an object.<br><br>Expected input to have these properties: (foo, bar, baz).  It is missing at least one property: foo.<br><br>`undefined`|Returns undefined if for some reason all of the expected properties are there.|  
+## makeExpectedPropsMessage
+``` js
+/**
+ * @description Make an error message for isObjectWithExpectedProps.
+ * @param {object} x The object to test.
+ * @param {string[]} expectedProperties The required properties.
+ * @param {string} [variableName=input] The name you want printed in the message.
+ * @returns {string|undefined} string|undefined
+*/
+makeExpectedPropsMessage(input, arrayOfStrings, [variableName]);
+```  
+Sample output:  
+* input is not an object.  
+* input is missing at least property foo.  
+* `undefined` (returns undefined if for some reason all of the expected properties are there) 
+
+## makeIsObjectLikeMessage
+``` js
+/**
+ * @description Make an error message for isObjectLike.
+ * @param {object} x The object to test.
+ * @param {object} template The object you want x to look like.
+ * @param {string} [variableName=input] The name you want printed in the message.
+ * @param {object} [options]
+ * @param {boolean} [options.checkType=false]  Defaults to true in strict mode.  If true check property data types.  
+ * @returns {string|undefined} string|undefined
+*/
+makeIsObjectLikeMessage(x, template, [variableName], [options]);
+```  
+Sample output:  
+* input is not an object.  
+* input is missing at least property foo.  
+* input has at least one additional property someSuperCoolProperty.  
+* input.fizz is type string and expected type boolean.  
+* `undefined` (returns undefined if for some reason all of the expected properties are there and, if checkType is true, they're of the expected type) 

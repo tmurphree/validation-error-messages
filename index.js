@@ -40,7 +40,7 @@ const main = function main(args = { strict: false }) {
     }
 
     if (xKeys === undefined) {
-      return `Expected ${variableName} to be an object.`;
+      return `${variableName} is not an object.`;
     }
 
     for (let index = 0; index < templateKeys.length; index++) {
@@ -73,13 +73,14 @@ const main = function main(args = { strict: false }) {
    * @description Make an error message for isObjectWithExpectedProps.
    * @param {object} x The object to test.
    * @param {string[]} expectedProperties The required properties.
+   * @param {string} [variableName=input] The name you want printed in the message.
    * @returns {string|undefined} string|undefined
   */
   // eslint-disable-next-line max-len
-  const makeIsObjectWithExpectedPropsMessage = function makeIsObjectWithExpectedPropsMessage(x, expectedProperties) {
-    const keys = detectObject(x) ?
-      Object.keys(x) :
-      undefined;
+  const makeIsObjectWithExpectedPropsMessage = (x, expectedProperties, variableName = 'input') => {
+    if (typeof variableName !== 'string') {
+      throw new Error('variableName must be a string');
+    }
 
     if (
       !(Array.isArray(expectedProperties)) ||
@@ -89,13 +90,17 @@ const main = function main(args = { strict: false }) {
       throw new Error('expectedProperties must be an array of strings with at least one entry.');
     }
 
+    const keys = detectObject(x) ?
+      Object.keys(x) :
+      undefined;
+
     if (keys === undefined) {
-      return 'Expected input to be an object.';
+      return `${variableName} is not an object.`;
     }
 
     for (let index = 0; index < expectedProperties.length; index++) {
       if (keys.includes(expectedProperties[index]) === false) {
-        return `input is missing at least property ${expectedProperties[index]}.`;
+        return `${variableName} is missing at least property ${expectedProperties[index]}.`;
       }
     }
 
