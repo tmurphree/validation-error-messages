@@ -56,7 +56,7 @@ const { makeIsObjectLikeMessage } = require('@tmurphree/validation-error-message
  * @param {string} [variableName=input] The name you want printed in the message.
  * @returns {string|undefined} string|undefined
 */
-makeExpectedPropsMessage(input, arrayOfStrings, [variableName]);
+makeExpectedPropsMessage(input, expectedProperties, [variableName]);
 ```  
 Sample output:  
 * input is not an object.  
