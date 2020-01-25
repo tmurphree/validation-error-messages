@@ -87,7 +87,7 @@ describe('makeIsObjectLikeMessage', () => {
       .toBe('input.b is type string and expected type number.');
   });
 
-  it('lets you chage the variable name in the output', () => {
+  it('lets you change the variable name in the output', () => {
     const bIsString = { a: 1, b: 's', c: 3 };
 
     expect(makeIsObjectLikeMessage('notanobject', template, 'charles'))

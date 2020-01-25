@@ -81,7 +81,7 @@ describe('makeIsObjectLikeMessage', () => {
       .toBe('input is missing at least property b.');
   });
 
-  it('lets you chage the variable name in the output', () => {
+  it('lets you change the variable name in the output', () => {
     expect(makeIsObjectLikeMessage('notanobject', template, 'charles'))
       .toBe('charles is not an object.');
 
@@ -143,7 +143,7 @@ describe('makeIsObjectWithExpectedPropsMessage', () => {
       .toBe('input is missing at least property foo.');
   });
 
-  it('lets you chage the variable name in the output', () => {
+  it('lets you change the variable name in the output', () => {
     const expectedProps = ['foo', 'bar', 'baz'];
     const x = { a: 1, b: 2, c: 3 };
 
