@@ -17,6 +17,7 @@ module.exports = {
     'no-console': 'off',
     'no-else-return': ['error', { 'allowElseIf': true }],
     'no-plusplus': ['error', { 'allowForLoopAfterthoughts': true }],
+    'object-curly-newline': ['error', { 'multiline': true }],
     'operator-linebreak': ['error', 'after'],
   },
 };
