@@ -8,7 +8,7 @@ const main = function main(args = { strict: false }) {
    * @description Make an error message for isObjectLike.
    * @param {object} x The object to test.
    * @param {object} template The object you want x to look like.
-   * @param {string} [variableName=input] The name you want printed in the message.
+   * @param {string} [variableName='input'] The name you want printed in the message.
    * @param {object} [options]
    * @param {boolean} [options.checkType=false]  If true check property data types.
    * @returns {string|undefined} string|undefined
@@ -73,7 +73,7 @@ const main = function main(args = { strict: false }) {
    * @description Make an error message for isObjectWithExpectedProps.
    * @param {object} x The object to test.
    * @param {string[]} expectedProperties The required properties.
-   * @param {string} [variableName=input] The name you want printed in the message.
+   * @param {string} [variableName='input'] The name you want printed in the message.
    * @returns {string|undefined} string|undefined
   */
   // eslint-disable-next-line max-len
