@@ -68,9 +68,7 @@ describe('makeIsObjectLikeMessage', () => {
       .toBe('input is missing at least property b.');
 
     // x has all of template plus property d
-    expect(makeIsObjectLikeMessage({
-      a: 1, b: 2, c: 3, d: 4,
-    }, template))
+    expect(makeIsObjectLikeMessage({ a: 1, b: 2, c: 3, d: 4 }, template))
       .toBe('input has at least one additional property d.');
   });
 
@@ -98,9 +96,7 @@ describe('makeIsObjectLikeMessage', () => {
       .toBe('charles is missing at least property b.');
 
     // x has all of template plus property d
-    expect(makeIsObjectLikeMessage({
-      a: 1, b: 2, c: 3, d: 4,
-    }, template, 'charles'))
+    expect(makeIsObjectLikeMessage({ a: 1, b: 2, c: 3, d: 4 }, template, 'charles'))
       .toBe('charles has at least one additional property d.');
 
     expect(makeIsObjectLikeMessage(bIsString, template, 'charles'))
