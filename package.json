@@ -35,5 +35,8 @@
   "bugs": {
     "url": "https://github.com/tmurphree/validation-error-messages/issues"
   },
-  "homepage": "https://github.com/tmurphree/validation-error-messages"
+  "homepage": "https://github.com/tmurphree/validation-error-messages",
+  "files": [
+    "index.js"
+  ]
 }
