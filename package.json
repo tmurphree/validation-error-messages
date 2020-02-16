@@ -10,9 +10,9 @@
   "license": "MIT",
   "scripts": {
     "docs": "jsdoc -c jsdoc.config.json --readme README.md .",
-    "lint": "eslint --ignore-path .eslintignore .",
-    "lint:fix": "eslint --ignore-path .eslintignore --fix .",
-    "pretest": "eslint --ignore-path .eslintignore .",
+    "lint": "eslint --ignore-path .gitignore --fix --fix-type layout .",
+    "lint:fix": "eslint --ignore-path .gitignore --fix .",
+    "pretest": "npm run lint",
     "test": "jasmine",
     "preversion": "npm run test"
   },
