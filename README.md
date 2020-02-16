@@ -65,15 +65,17 @@ Sample output:
 
 ## makeIsObjectLikeMessage
 ``` js
-/**
- * @description Make an error message for isObjectLike.
- * @param {object} x The object to test.
- * @param {object} template The object you want x to look like.
- * @param {string} [variableName='input'] The name you want printed in the message.
- * @param {object} [options]
- * @param {boolean} [options.checkType=false]  Defaults to true in strict mode.  If true check property data types.  
- * @returns {string|undefined} string|undefined
-*/
+  /**
+   * @description Make an error message for isObjectLike.
+   * @param {object} x The object to test.
+   * @param {object} template The object you want x to look like.
+   * @param {string} [variableName='input'] The name you want printed in the message.
+   * @param {object} [options]
+   * @param {boolean} [options.allowExtraProps=false] Return undefined if the object to test has
+   *   properties not in template and other tests pass.
+   * @param {boolean} [options.checkType=false]  If true check property data types.
+   * @returns {string|undefined} string|undefined
+  */
 makeIsObjectLikeMessage(x, template, [variableName], [options]);
 ```  
 Sample output:  

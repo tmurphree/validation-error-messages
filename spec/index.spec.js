@@ -91,6 +91,14 @@ describe('makeIsObjectLikeMessage', () => {
     expect(makeIsObjectLikeMessage({ a: 1, b: 2, c: 3, d: 4 }, template, 'charles'))
       .toBe('charles has at least one additional property d.');
   });
+
+  it('optionally allows extras', () => {
+    const hasExtraPropD = { a: 'string', b: true, c: 12, d: 'something' };
+    const apeTemplate = { a: 'string', b: true, c: 12 };
+
+    expect(makeIsObjectLikeMessage(hasExtraPropD, apeTemplate, 'input', { allowExtraProps: true }))
+      .toBeUndefined();
+  });
 });
 
 describe('makeIsObjectWithExpectedPropsMessage', () => {

@@ -10,6 +10,8 @@ const main = function main(args = { strict: false }) {
    * @param {object} template The object you want x to look like.
    * @param {string} [variableName='input'] The name you want printed in the message.
    * @param {object} [options]
+   * @param {boolean} [options.allowExtraProps=false] Return undefined if the object to test has
+   *   properties not in template and other tests pass.
    * @param {boolean} [options.checkType=false]  If true check property data types.
    * @returns {string|undefined} string|undefined
   */
@@ -17,7 +19,7 @@ const main = function main(args = { strict: false }) {
     x,
     template,
     variableName = 'input',
-    options = { checkType: args.strict }
+    options = { allowExtraProps: false, checkType: args.strict }
   ) {
     if (typeof variableName !== 'string') {
       throw new Error('variableName must be a string');
@@ -49,9 +51,11 @@ const main = function main(args = { strict: false }) {
       }
     }
 
-    for (let index = 0; index < xKeys.length; index++) {
-      if (templateKeys.includes(xKeys[index]) === false) {
-        return `${variableName} has at least one additional property ${xKeys[index]}.`;
+    if (options.allowExtraProps === false) {
+      for (let index = 0; index < xKeys.length; index++) {
+        if (templateKeys.includes(xKeys[index]) === false) {
+          return `${variableName} has at least one additional property ${xKeys[index]}.`;
+        }
       }
     }
 

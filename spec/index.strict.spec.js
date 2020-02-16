@@ -102,4 +102,12 @@ describe('makeIsObjectLikeMessage', () => {
     expect(makeIsObjectLikeMessage(bIsString, template, 'charles'))
       .toBe('charles.b is type string and expected type number.');
   });
+
+  it('optionally allows extras', () => {
+    const hasExtraPropD = { a: 'string', b: true, c: 12, d: 'something' };
+    const aepTemplate = { a: 'string', b: true, c: 12 };
+
+    expect(makeIsObjectLikeMessage(hasExtraPropD, aepTemplate, 'input', { allowExtraProps: true }))
+      .toBeUndefined();
+  });
 });
