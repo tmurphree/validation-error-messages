@@ -19,7 +19,7 @@ const main = function main(args = { strict: false }) {
     x,
     template,
     variableName = 'input',
-    options = { allowExtraProps: false, checkType: args.strict }
+    options = {}
   ) {
     if (typeof variableName !== 'string') {
       throw new Error('variableName must be a string');
@@ -28,6 +28,23 @@ const main = function main(args = { strict: false }) {
     if (!(detectObject(options))) {
       throw new Error('options must be an object.');
     }
+
+    // #region set options
+    const copyOfOptions = { ...options };
+    const defaults = {
+      allowExtraProps: false,
+      checkType: args.strict,
+      debug: false,
+    };
+
+    for (let index = 0; index < Object.keys(defaults).length; index++) {
+      const currentKey = Object.keys(defaults)[index];
+
+      if (copyOfOptions[currentKey] === undefined) {
+        copyOfOptions[currentKey] = defaults[currentKey];
+      }
+    }
+    // #endregion set options
 
     const templateKeys = detectObject(template) ?
       Object.keys(template) :
@@ -51,7 +68,7 @@ const main = function main(args = { strict: false }) {
       }
     }
 
-    if (options.allowExtraProps === false) {
+    if (copyOfOptions.allowExtraProps === false) {
       for (let index = 0; index < xKeys.length; index++) {
         if (templateKeys.includes(xKeys[index]) === false) {
           return `${variableName} has at least one additional property ${xKeys[index]}.`;
@@ -60,7 +77,7 @@ const main = function main(args = { strict: false }) {
     }
 
     // keys are the same here so it doesn't matter which key array we use
-    if (options.checkType === true) {
+    if (copyOfOptions.checkType === true) {
       for (let index = 0; index < templateKeys.length; index++) {
         const currentKey = templateKeys[index];
 
