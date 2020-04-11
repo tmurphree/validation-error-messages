@@ -1,3 +1,6 @@
+# 1.0.5  
+Updatet dev dependencies to fix minimist vulnerability.  
+
 # 1.0.4  
 Updatet dev dependencies to fix acorn vulnerability.  
 
